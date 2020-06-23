@@ -1,24 +1,45 @@
 import { createStore, createEvent, createEffect } from 'effector'
 
-// стор
-const palettsStore = createStore([])
+// Стор
+const $paletteStore = createStore([])
+const $paletteCount = $paletteStore.map(p => p.length)
+const $isLoading = createStore(false)
+const $error = createStore(null)
 
-// событие
-const setPaletts = createEvent('setPaletts')
+// События
+const createPalette = createEvent('Create Palette')
+const deletePalette = createEvent('Delete Palette')
+const editPalette = createEvent('Edit Palette')
 
-//
-const getPaletts = createEffect('load paletts').use(params => {
-  return fetch('data.json').then(res =>
-    res.json(),
-  )
+// Effects
+const getPaletts = createEffect('load paletts').use(async () => {
+  const res = await fetch('/data.json')
+  const data = await res.json()
+  return data
 })
 
-// выводим в консоль все изменения стора
-getPaletts.watch(params => {
-  console.log(params) // {id: 1}
-})
+$isLoading
+	.on(getPaletts, () => true)
+	.on(getPaletts.done, () => false)
+	.on(getPaletts.fail, () => false)
+
+$paletteStore
+	.on(getPaletts, () => [])
+	.on(getPaletts.done, (state, res) => res.paletts)
+
+$error
+	.on(getPaletts, () => null)
+	.on(getPaletts.fail, (state, res) => console.log("errors", res))
+
 
 // что-то делаем когда вызвали setPaletts событие
-palettsStore.on(setPaletts,()=>{
+$paletteStore.on(getPaletts.doneData, (state, data) => data.paletts)
 
-})
+export {
+	$paletteStore,
+	$paletteCount,
+  getPaletts,
+	createPalette,
+	deletePalette,
+	editPalette,
+}

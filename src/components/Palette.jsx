@@ -1,22 +1,23 @@
 import React from 'react'
 import styled from 'styled-components'
 
-export const Palette = () => {
-	const arr = Array.from(new Array(4).keys())
+const Palette = ({ name, likes, createdAt, colors }) => {
 	return (
 		<PaletteInner>
+      <PaletteHeader>{name}</PaletteHeader>
 			<PaletteColors>
-        {arr.map(k => (
-          <Color key={k}></Color>
-        ))}
-      </PaletteColors>
+				{colors.map((color, i) => (
+					<ColorInner key={i} color={color}></ColorInner>
+				))}
+			</PaletteColors>
 			<PaletteFooter>
-				<PaletteLikes>❤ 12</PaletteLikes>
-				<PaletteDate>12/12/12</PaletteDate>
+				<PaletteLikes>❤ {likes}</PaletteLikes>
+				<PaletteDate>{createdAt}</PaletteDate>
 			</PaletteFooter>
 		</PaletteInner>
 	)
 }
+export default Palette
 
 const PaletteInner = styled.div`
 	box-sizing: border-box;
@@ -41,11 +42,15 @@ const PaletteFooter = styled.div`
 	justify-content: space-between;
 	align-items: center;
 `
+const PaletteHeader = styled.div`
+  font-size: 20px;
+	margin-bottom: 10px;
+`
 const PaletteLikes = styled.button`
 	color: red;
-  width: 75px;
-  height: 35px;
-  background-color: #fff;
+	width: 75px;
+	height: 35px;
+	background-color: #fff;
 	border: 2px solid #eee;
 	border-radius: 20px;
 	outline: none;
@@ -53,6 +58,9 @@ const PaletteLikes = styled.button`
 `
 const PaletteDate = styled.div``
 
-const Color = styled.div`
-
-`
+const ColorInner = styled.div`
+	cursor: pointer;
+  width: 100%;
+  height: 25%;
+  background-color: ${props => props.color ? props.color : '#eee'};
+`;

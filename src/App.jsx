@@ -1,46 +1,43 @@
 import React, { useEffect } from 'react'
-import { Header } from './components/Header'
-import { Palette } from './components/Palette'
+import { Header, Palette } from './components'
 import styled from 'styled-components'
 import { Container } from './styles/global'
-
+import { useStore } from 'effector-react'
+import { $paletteStore, getPaletts } from './store/state'
 
 export const App = () => {
-  useEffect(()=>{
-    const fetchData = async () => {
-      const resp = await fetch('/data.json')
-      const json = await resp.json()
-      console.log(json);
-    }
-    fetchData();
-  },[])
-	const arr = Array.from(new Array(10).keys())
+	const paletts = useStore($paletteStore)
+
+	useEffect(() => {
+		getPaletts()
+	}, [])
+  console.log(paletts)
 
 	return (
 		<div className="App">
 			<Header />
 			<MainSection>
-        <MainInner>
-          <PalettsList>
-            {arr.map(m => (
-              <Palette key={m} />
-            ))}
-          </PalettsList>
-        </MainInner>
+				<MainInner>
+					<PalettsList>
+						{paletts.map(p => (
+							<Palette key={p.id} {...p}/>
+						))}
+					</PalettsList>
+				</MainInner>
 			</MainSection>
 		</div>
 	)
 }
 
 const MainSection = styled.div`
-  background-color: #fdfdfd;
-  padding-top: 60px;
-`;
+	background-color: #fdfdfd;
+	padding-top: 60px;
+`
 const MainInner = styled(Container)`
-  padding: 20px 0;
-`;
+	padding: 20px 0;
+`
 const PalettsList = styled.div`
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px,1fr));
-  gap: 20px;
-`;
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+	gap: 20px;
+`

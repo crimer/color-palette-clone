@@ -2,7 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import { HeaderHeight, Container,SoftShadow } from '../styles/global'
 
-export const Header = () => {
+const Header = () => {
 	return (
 		<HeaderOuter>
 			<HeaderInner>
@@ -15,6 +15,7 @@ export const Header = () => {
 		</HeaderOuter>
 	)
 }
+export default Header
 
 const HeaderOuter = styled(SoftShadow)`
 	background-color: #fff;
