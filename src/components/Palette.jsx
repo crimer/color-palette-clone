@@ -21,6 +21,7 @@ export default Palette
 
 const PaletteInner = styled.div`
 	box-sizing: border-box;
+	cursor: pointer;
 	background-color: #fff;
 	padding: 15px;
 	width: 100%;
@@ -59,7 +60,6 @@ const PaletteLikes = styled.button`
 const PaletteDate = styled.div``
 
 const ColorInner = styled.div`
-	cursor: pointer;
   width: 100%;
   height: 25%;
   background-color: ${props => props.color ? props.color : '#eee'};

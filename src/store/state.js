@@ -13,9 +13,9 @@ const editPalette = createEvent('Edit Palette')
 
 // Effects
 const getPaletts = createEffect('load paletts').use(async () => {
-  const res = await fetch('/data.json')
-  const data = await res.json()
-  return data
+	const res = await fetch('/data.json')
+	const data = await res.json()
+	return data
 })
 
 $isLoading
@@ -29,8 +29,7 @@ $paletteStore
 
 $error
 	.on(getPaletts, () => null)
-	.on(getPaletts.fail, (state, res) => console.log("errors", res))
-
+	.on(getPaletts.fail, (state, res) => console.log('errors', res))
 
 // что-то делаем когда вызвали setPaletts событие
 $paletteStore.on(getPaletts.doneData, (state, data) => data.paletts)
@@ -38,7 +37,7 @@ $paletteStore.on(getPaletts.doneData, (state, data) => data.paletts)
 export {
 	$paletteStore,
 	$paletteCount,
-  getPaletts,
+	getPaletts,
 	createPalette,
 	deletePalette,
 	editPalette,

@@ -1,15 +1,18 @@
 import React from 'react'
 import styled from 'styled-components'
-import { HeaderHeight, Container,SoftShadow } from '../styles/global'
+import { HeaderHeight, Container, SoftShadow } from '../styles/global'
+import { Link } from 'react-router-dom'
 
 const Header = () => {
 	return (
 		<HeaderOuter>
 			<HeaderInner>
-				<HeaderLogo>React-color-palette</HeaderLogo>
+				<Link to="/">
+					<HeaderLogo>React-color-palette</HeaderLogo>
+				</Link>
 				<HeaderLinks>
-					<a>Paletts</a>
-					<a>...</a>
+					<Link to="/">Paletts</Link>
+					{/* <Link t0="/">...</Link> */}
 				</HeaderLinks>
 			</HeaderInner>
 		</HeaderOuter>

@@ -1,28 +1,21 @@
-import React, { useEffect } from 'react'
-import { Header, Palette } from './components'
+import React from 'react'
+import { Switch, Route } from 'react-router-dom'
+import { Header } from './components/index'
+import MainPage from './pages/MainPage'
+import PalettePage from './pages/PalettePage'
 import styled from 'styled-components'
 import { Container } from './styles/global'
-import { useStore } from 'effector-react'
-import { $paletteStore, getPaletts } from './store/state'
 
 export const App = () => {
-	const paletts = useStore($paletteStore)
-
-	useEffect(() => {
-		getPaletts()
-	}, [])
-  console.log(paletts)
-
 	return (
 		<div className="App">
 			<Header />
 			<MainSection>
 				<MainInner>
-					<PalettsList>
-						{paletts.map(p => (
-							<Palette key={p.id} {...p}/>
-						))}
-					</PalettsList>
+					<Switch>
+						<Route path="/palette/:paletteId" component={PalettePage}/>
+						<Route exact path="/" component={MainPage}/>
+					</Switch>
 				</MainInner>
 			</MainSection>
 		</div>
@@ -35,9 +28,4 @@ const MainSection = styled.div`
 `
 const MainInner = styled(Container)`
 	padding: 20px 0;
-`
-const PalettsList = styled.div`
-	display: grid;
-	grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-	gap: 20px;
 `
