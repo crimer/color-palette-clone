@@ -1,4 +1,4 @@
-import { createStore, createEvent, createEffect } from 'effector'
+import { createEffect, createEvent, createStore } from 'effector'
 
 // Стор
 const $paletteStore = createStore([])
@@ -12,11 +12,16 @@ const deletePalette = createEvent('Delete Palette')
 const editPalette = createEvent('Edit Palette')
 
 // Effects
-const getPaletts = createEffect('load paletts').use(async () => {
+const getPaletts = createEffect('load paletts')
+getPaletts.use(async () => {
 	const res = await fetch('/data.json')
 	const data = await res.json()
 	return data
 })
+
+const getPalette = (paletteId) => {
+  $paletteStore.getState().find(p => p.id === paletteId)
+}
 
 $isLoading
 	.on(getPaletts, () => true)
@@ -25,20 +30,24 @@ $isLoading
 
 $paletteStore
 	.on(getPaletts, () => [])
-	.on(getPaletts.done, (state, res) => res.paletts)
+	.on(getPaletts.doneData, (state, data) => {
+		console.log(data)
+		return data.paletts
+	})
 
 $error
 	.on(getPaletts, () => null)
 	.on(getPaletts.fail, (state, res) => console.log('errors', res))
 
-// что-то делаем когда вызвали setPaletts событие
-$paletteStore.on(getPaletts.doneData, (state, data) => data.paletts)
-
 export {
-	$paletteStore,
-	$paletteCount,
-	getPaletts,
-	createPalette,
-	deletePalette,
-	editPalette,
+  $paletteStore,
+  $paletteCount,
+  $isLoading,
+  $error,
+  getPalette,
+  getPaletts,
+  createPalette,
+  deletePalette,
+  editPalette,
 }
+

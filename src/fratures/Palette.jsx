@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 
-const Palette = ({ name, likes, createdAt, colors }) => {
+export const Palette = ({ name, likes, createdAt, colors }) => {
 	return (
 		<PaletteInner>
       <PaletteHeader>{name}</PaletteHeader>
@@ -17,7 +17,6 @@ const Palette = ({ name, likes, createdAt, colors }) => {
 		</PaletteInner>
 	)
 }
-export default Palette
 
 const PaletteInner = styled.div`
 	box-sizing: border-box;
@@ -47,13 +46,9 @@ const PaletteHeader = styled.div`
   font-size: 20px;
 	margin-bottom: 10px;
 `
-const PaletteLikes = styled.button`
+const PaletteLikes = styled.span`
 	color: red;
-	width: 75px;
-	height: 35px;
 	background-color: #fff;
-	border: 2px solid #eee;
-	border-radius: 20px;
 	outline: none;
 	cursor: pointer;
 `
