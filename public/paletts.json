@@ -1,0 +1,76 @@
+{
+	"paletts": [
+		{
+      "id": 1,
+			"name": "Latte",
+			"likes": 12,
+			"createdAt": "12.12.21",
+			"colors": [
+				"#f4f6ff",
+				"#ffcb74",
+				"#ea907a",
+				"#4f8a8b"
+      ]
+		},
+		{
+      "id": 2,
+			"name": "Latte",
+			"likes": 12,
+			"createdAt": "12.12.21",
+			"colors": [
+				"#f4f6ff",
+				"#ffcb74",
+				"#ea907a",
+				"#4f8a8b"
+      ]
+		},
+		{
+      "id": 3,
+			"name": "Latte",
+			"likes": 12,
+			"createdAt": "12.12.21",
+			"colors": [
+				"#f4f6ff",
+				"#ffcb74",
+				"#ea907a",
+				"#4f8a8b"
+      ]
+		},
+		{
+      "id": 4,
+			"name": "Latte",
+			"likes": 12,
+			"createdAt": "12.12.21",
+			"colors": [
+				"#f4f6ff",
+				"#ffcb74",
+				"#ea907a",
+				"#4f8a8b"
+      ]
+		},
+		{
+      "id": 5,
+			"name": "Latte",
+			"likes": 12,
+			"createdAt": "12.12.21",
+			"colors": [
+				"#f4f6ff",
+				"#ffcb74",
+				"#ea907a",
+				"#4f8a8b"
+      ]
+		},
+		{
+      "id": 6,
+			"name": "Latte",
+			"likes": 12,
+			"createdAt": "12.12.21",
+			"colors": [
+				"#f4f6ff",
+				"#ffcb74",
+				"#ea907a",
+				"#4f8a8b"
+      ]
+		}
+	]
+}
